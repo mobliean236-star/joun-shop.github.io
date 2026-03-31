@@ -9,244 +9,215 @@
 
 <style>
 body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: #000;
-  color: #fff;
+  margin:0;
+  font-family:'Montserrat',sans-serif;
+  background:#000;
+  color:white;
 }
 
 /* HEADER */
 .header {
-  text-align: center;
-  padding: 70px 20px;
-  background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1400&q=80') center/cover;
-  position: relative;
-}
-
-.header::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
+  padding:20px;
+  text-align:center;
+  background:#111;
+  border-bottom:1px solid #222;
 }
 
 .header h1 {
-  position: relative;
-  font-size: 50px;
-  margin: 0;
-  background: linear-gradient(90deg,#c8a97e,#fff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin:0;
+  font-size:28px;
+  color:#c8a97e;
 }
 
-.header p {
-  position: relative;
-  color: #c8a97e;
-  font-size: 22px;
+/* MENU */
+.menu {
+  padding:10px;
 }
 
-/* TITLES */
-.section-title {
-  text-align: center;
-  margin: 40px 0 20px;
-  font-size: 26px;
-  border-bottom: 2px solid #333;
+.item {
+  display:flex;
+  align-items:center;
+  background:#111;
+  margin-bottom:10px;
+  border-radius:12px;
+  overflow:hidden;
 }
 
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-  gap: 20px;
-  padding: 20px;
+.item img {
+  width:90px;
+  height:90px;
+  object-fit:cover;
 }
 
-/* CARD */
-.card {
-  background: #111;
-  border-radius: 15px;
-  overflow: hidden;
-  position: relative;
-}
-
-.card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.card-content {
-  padding: 12px;
-  text-align: center;
+.item-info {
+  flex:1;
+  padding:10px;
 }
 
 .price {
-  color: #c8a97e;
-  font-weight: bold;
+  color:#c8a97e;
+  font-weight:bold;
 }
 
-/* BUTTON ADD */
-.add-btn {
-  margin-top: 10px;
-  background: #c8a97e;
-  border: none;
-  padding: 10px;
-  border-radius: 30px;
-  cursor: pointer;
-  width: 100%;
-  font-weight: bold;
+/* CONTROLS */
+.controls {
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-/* BEST SELLER */
+.controls button {
+  background:#c8a97e;
+  border:none;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  font-weight:bold;
+}
+
+.qty {
+  min-width:20px;
+  text-align:center;
+}
+
+/* BADGE */
 .badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: #c8a97e;
-  color: black;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 12px;
+  background:#c8a97e;
+  color:black;
+  font-size:10px;
+  padding:2px 6px;
+  border-radius:10px;
+  margin-bottom:5px;
+  display:inline-block;
 }
 
-/* CART */
-.cart {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #111;
-  padding: 15px;
-  box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+/* CART BAR */
+.cart-bar {
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#111;
+  padding:15px;
+  border-top:2px solid #c8a97e;
 }
 
-.cart button {
-  width: 100%;
-  padding: 15px;
-  background: #25D366;
-  border: none;
-  color: white;
-  font-weight: bold;
-  border-radius: 30px;
-}
-
-/* FLOAT */
-.float {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-}
-
-.mapbtn {
-  padding: 12px 20px;
-  background: #c8a97e;
-  border: none;
-  border-radius: 50px;
+.cart-bar button {
+  width:100%;
+  padding:15px;
+  background:#25D366;
+  border:none;
+  border-radius:30px;
+  font-weight:bold;
+  color:white;
 }
 </style>
 
 <script>
-let cart = [];
+let cart = {};
 
-const coffee = [
-  {name:"Espresso", price:"35k"},
-  {name:"Americano", price:"30k"},
-  {name:"Cappuccino", price:"35k"},
-  {name:"Latte", price:"35k"},
-  {name:"Mocha", price:"40k"},
-  {name:"Vanilla Latte", price:"40k"},
-  {name:"Caramel Latte", price:"45k"},
-  {name:"Orange Coffee", price:"45k", best:true},
-  {name:"Coconut Coffee", price:"45k", best:true}
+const menu = [
+  {name:"Espresso", price:35000},
+  {name:"Americano", price:30000},
+  {name:"Cappuccino", price:35000},
+  {name:"Latte", price:35000},
+  {name:"Mocha", price:40000},
+  {name:"Vanilla Latte", price:40000},
+  {name:"Caramel Latte", price:45000},
+  {name:"Orange Coffee", price:45000, best:true},
+  {name:"Coconut Coffee", price:45000, best:true},
+  {name:"Matcha Coconut", price:50000},
+  {name:"Matcha Latte", price:45000},
+  {name:"Strawberry Milk", price:35000},
+  {name:"Cocoa Strawberry", price:45000},
+  {name:"Cocoa Latte", price:35000},
+  {name:"Matcha Strawberry", price:50000},
+  {name:"Green Tea", price:35000},
+  {name:"Thai Milk Tea", price:35000},
+  {name:"Cocoa Coconut", price:45000}
 ];
 
-const noncoffee = [
-  {name:"Matcha Coconut", price:"50k"},
-  {name:"Matcha Latte", price:"45k"},
-  {name:"Strawberry Milk", price:"35k"},
-  {name:"Cocoa Strawberry", price:"45k"},
-  {name:"Cocoa Latte", price:"35k"},
-  {name:"Matcha Strawberry", price:"50k"},
-  {name:"Green Tea", price:"35k"},
-  {name:"Thai Milk Tea", price:"35k"},
-  {name:"Cocoa Coconut", price:"45k"}
-];
-
-// ADD TO CART
-function addToCart(name){
-  cart.push(name);
-  updateCart();
+// ADD
+function add(name){
+  cart[name]=(cart[name]||0)+1;
+  update();
 }
 
-// UPDATE CART BUTTON
-function updateCart(){
-  document.getElementById("cart-count").innerText = cart.length;
+// REMOVE
+function remove(name){
+  if(cart[name]){
+    cart[name]--;
+    if(cart[name]<=0) delete cart[name];
+  }
+  update();
 }
 
-// SEND ORDER
-function sendOrder(){
-  if(cart.length === 0){
-    alert("Cart is empty");
-    return;
+// UPDATE UI
+function update(){
+  let total=0;
+
+  menu.forEach(item=>{
+    let qty = cart[item.name] || 0;
+    document.getElementById("qty-"+item.name).innerText = qty;
+
+    total += qty * item.price;
+  });
+
+  document.getElementById("total").innerText =
+    "🛒 Order ("+total.toLocaleString()+"₭)";
+}
+
+// SEND
+function send(){
+  let message="Order:\n";
+  let total=0;
+
+  for(let item in cart){
+    let qty=cart[item];
+    let price = menu.find(m=>m.name===item).price;
+    total+=price*qty;
+    message+=`${item} x${qty}\n`;
   }
 
-  let message = "Hello, I would like to order:\n";
-  cart.forEach(item => message += "- " + item + "\n");
+  message+="Total: "+total.toLocaleString()+"₭";
 
-  window.open("https://wa.me/8562092747227?text=" + encodeURIComponent(message));
+  window.open("https://wa.me/8562092747227?text="+encodeURIComponent(message));
 }
 
 // RENDER
-function renderCategory(list,id){
-  const container = document.getElementById(id);
-  container.innerHTML="";
-  list.forEach(item=>{
+function render(){
+  const container=document.getElementById("menu");
+
+  menu.forEach(item=>{
     container.innerHTML+=`
-      <div class="card">
-        ${item.best ? '<div class="badge">🔥 BEST SELLER</div>' : ''}
+      <div class="item">
         <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
-        <div class="card-content">
-          <h3>${item.name}</h3>
-          <p class="price">${item.price}</p>
-          <button class="add-btn" onclick="addToCart('${item.name}')">ADD TO ORDER</button>
+        <div class="item-info">
+          ${item.best ? '<div class="badge">🔥 BEST SELLER</div>' : ''}
+          <div>${item.name}</div>
+          <div class="price">${item.price.toLocaleString()}₭</div>
+        </div>
+        <div class="controls">
+          <button onclick="remove('${item.name}')">-</button>
+          <div id="qty-${item.name}" class="qty">0</div>
+          <button onclick="add('${item.name}')">+</button>
         </div>
       </div>
     `;
   });
 }
-
-function init(){
-  renderCategory(coffee,"coffee");
-  renderCategory(noncoffee,"noncoffee");
-}
 </script>
 </head>
 
-<body onload="init()">
+<body onload="render()">
 
 <div class="header">
   <h1>LIFE COFFEE</h1>
-  <p>SLOWBAR</p>
 </div>
 
-<div class="section-title">COFFEE</div>
-<div id="coffee" class="grid"></div>
+<div id="menu" class="menu"></div>
 
-<div class="section-title">NON COFFEE</div>
-<div id="noncoffee" class="grid"></div>
-
-<!-- CART -->
-<div class="cart">
-  <button onclick="sendOrder()">
-    🛒 Order on WhatsApp (<span id="cart-count">0</span>)
-  </button>
-</div>
-
-<!-- MAP -->
-<div class="float">
-  <a href="https://www.google.com/maps?q=19.895000663346558,102.14216503795944">
-    <button class="mapbtn">Map</button>
-  </a>
+<div class="cart-bar">
+  <button id="total" onclick="send()">🛒 Order (0₭)</button>
 </div>
 
 </body>
