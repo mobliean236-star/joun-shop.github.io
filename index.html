@@ -10,7 +10,7 @@
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  background: #000;
+  background: black;
   color: white;
 }
 
@@ -20,7 +20,7 @@ body {
   padding: 20px;
 }
 
-/* Language buttons */
+/* Language */
 .lang {
   text-align: center;
   margin-bottom: 20px;
@@ -32,6 +32,15 @@ body {
   border: none;
   background: #c8a97e;
   cursor: pointer;
+}
+
+/* Section */
+.section-title {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 22px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
 }
 
 /* Grid */
@@ -47,8 +56,8 @@ body {
   background: #111;
   border-radius: 10px;
   overflow: hidden;
-  transition: 0.3s;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .card:hover {
@@ -68,58 +77,70 @@ body {
 .price {
   color: #c8a97e;
 }
-
-/* Section title */
-.section {
-  padding: 20px;
-  font-size: 20px;
-  border-bottom: 1px solid #333;
-}
 </style>
 
 <script>
-let currentLang = "en";
+let lang = "en";
 
-const products = [
-  {name_en:"Espresso", name_la:"ກາເຟ Espresso", price:"35k"},
-  {name_en:"Americano", name_la:"Americano", price:"30k"},
-  {name_en:"Cappuccino", name_la:"Cappuccino", price:"35k"},
-  {name_en:"Latte", name_la:"Latte", price:"35k"},
-  {name_en:"Mocha", name_la:"Mocha", price:"40k"},
-  {name_en:"Matcha Latte", name_la:"Matcha Latte", price:"45k"},
-  {name_en:"Thai milk tea", name_la:"ຊານົມໄທ", price:"35k"}
+const coffee = [
+  {en:"Espresso", la:"Espresso", price:"35k"},
+  {en:"Americano", la:"Americano", price:"30k"},
+  {en:"Cappuccino", la:"Cappuccino", price:"35k"},
+  {en:"Latte", la:"Latte", price:"35k"},
+  {en:"Mocha", la:"Mocha", price:"40k"},
+  {en:"Vanila latte", la:"Vanila latte", price:"40k"},
+  {en:"Caramel latte", la:"Caramel latte", price:"45k"},
+  {en:"Orange coffee", la:"Orange coffee", price:"45k"},
+  {en:"Coconut coffee", la:"Coconut coffee", price:"45k"}
 ];
 
-function setLang(lang){
-  currentLang = lang;
+const noncoffee = [
+  {en:"Matcha coconut", la:"Matcha coconut", price:"50k"},
+  {en:"Matcha Latte", la:"Matcha Latte", price:"45k"},
+  {en:"Strawberry milk", la:"Strawberry milk", price:"35k"},
+  {en:"Cocoa strawberry", la:"Cocoa strawberry", price:"45k"},
+  {en:"Cocoalate", la:"Cocoalate", price:"35k"},
+  {en:"Matcha Strawberry", la:"Matcha Strawberry", price:"50k"},
+  {en:"Green tea", la:"Green tea", price:"35k"},
+  {en:"Thai milk tea", la:"Thai milk tea", price:"35k"},
+  {en:"Cocoa coconut", la:"Cocoa coconut", price:"45k"}
+];
+
+function setLang(l){
+  lang = l;
   render();
 }
 
 function order(name){
-  let text = currentLang === "la"
+  let text = lang === "la"
     ? "ຂ້ອຍຢາກສັ່ງ " + name
     : "Hello, I would like to order " + name;
 
   window.open("https://wa.me/8562092747227?text=" + encodeURIComponent(text));
 }
 
-function render(){
-  const container = document.getElementById("products");
+function renderCategory(list, containerId){
+  const container = document.getElementById(containerId);
   container.innerHTML = "";
 
-  products.forEach(p => {
-    const name = currentLang === "la" ? p.name_la : p.name_en;
+  list.forEach(item => {
+    const name = lang === "la" ? item.la : item.en;
 
     container.innerHTML += `
       <div class="card" onclick="order('${name}')">
-        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80">
         <div class="card-content">
           <h3>${name}</h3>
-          <p class="price">${p.price}</p>
+          <p class="price">${item.price}</p>
         </div>
       </div>
     `;
   });
+}
+
+function render(){
+  renderCategory(coffee, "coffee");
+  renderCategory(noncoffee, "noncoffee");
 }
 </script>
 
@@ -137,13 +158,13 @@ function render(){
   <button onclick="setLang('la')">Lao</button>
 </div>
 
-<div class="section">Menu</div>
+<div class="section-title">COFFEE</div>
+<div id="coffee" class="grid"></div>
 
-<div id="products" class="grid"></div>
+<div class="section-title">NON COFFEE</div>
+<div id="noncoffee" class="grid"></div>
 
 </body>
 </html>
-
-
     
       
