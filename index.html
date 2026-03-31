@@ -32,7 +32,7 @@ body {
   position:relative;
   font-size:60px;
   font-weight:900;
-  color: #fff; /* texte blanc */
+  color: #fff;
   text-shadow:
     0 0 5px #000,
     0 0 10px #000,
@@ -42,11 +42,11 @@ body {
 }
 .header p {
   position:relative;
-  color: #fff; /* SLOWBAR en blanc */
+  color: #fff;
   margin-top:10px;
   font-weight:bold;
   font-size:22px;
-  text-shadow: 0 0 5px #000; /* petit shader noir */
+  text-shadow: 0 0 5px #000;
 }
 
 /* SECTION TITLE */
@@ -88,7 +88,7 @@ body {
   text-align:center;
 }
 .price {
-  color:#0ff; /* néon bleu futuriste */
+  color:#0ff;
   font-weight:bold;
 }
 
@@ -216,7 +216,7 @@ body {
 /* FLOAT BUTTON ORDER DIRECT */
 .float-order {
   position:fixed;
-  bottom:80px; /* reculé pour ne pas cacher la map */
+  bottom:80px;
   left:50%;
   transform:translateX(-50%);
   z-index:999;
@@ -362,13 +362,18 @@ function renderCartOverlay(){
   }
 }
 
-// MODIFIED SEND FUNCTION WITH FIXED ODR ID
 function send(){
   if(Object.keys(cart).length===0){alert("Please add drinks!"); return;}
+  
+  let clientName = '';
+  while(true){
+    clientName = prompt("Veuillez entrer votre nom :","");
+    if(clientName && clientName.trim() !== "") break;
+    alert("Le nom est requis pour passer la commande !");
+  }
 
-  const orderId = 'ODR' + Math.floor(1000 + Math.random() * 9000); // ODR unique
-  let msg=`Order ${orderId}:\n`; // cannot be modified by client
-
+  const orderId = 'ODR' + Math.floor(1000 + Math.random() * 9000);
+  let msg=`Order ${orderId} - ${clientName}:\n`;
   let total=0;
   for(let item in cart){
     let qty=cart[item];
@@ -377,7 +382,6 @@ function send(){
     msg+=`${item} x${qty}\n`;
   }
   msg+="Total: "+total.toLocaleString()+"₭";
-
   window.open("https://wa.me/8562092747227?text="+encodeURIComponent(msg));
 }
 
