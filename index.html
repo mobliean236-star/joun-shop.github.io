@@ -15,31 +15,32 @@ body {
   color:white;
 }
 
+/* HEADER */
 .header {
-  text-align: center;
-  padding: 80px 20px;
-  background: url('https://instagram.fvte1-2.fna.fbcdn.net/v/t51.82787-19/584396404_17869980852470041_1818696316304274441_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fvte1-2.fna.fbcdn.net&_nc_cat=101&_nc_oc=Q6cZ2gH0gC28YFYdINhVCArHzs29mbjUsOJLeubwuL8w95C24vBDRTDNHDy8m1Uur5i7lUM&_nc_ohc=5uW9kA40QxwQ7kNvwFsCMKH&_nc_gid=I-vqLkO3DDBPliYziFHLJg&edm=AHzjunoBAAAA&ccb=7-5&oh=00_Af3Hy2H9UhfmUeHlXym_Oib1FDQ-gbIfdYREICYFLMjmFQ&oe=69D5943B&_nc_sid=ba8368')
-              center top / auto 100% no-repeat;
-  position: relative;
+  text-align:center;
+  padding:80px 20px;
+  background:url('https://instagram.fvte1-2.fna.fbcdn.net/v/t51.82787-19/584396404_17869980852470041_1818696316304274441_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fvte1-2.fna.fbcdn.net&_nc_cat=101&_nc_oc=Q6cZ2gH0gC28YFYdINhVCArHzs29mbjUsOJLeubwuL8w95C24vBDRTDNHDy8m1Uur5i7lUM&_nc_ohc=5uW9kA40QxwQ7kNvwFsCMKH&_nc_gid=I-vqLkO3DDBPliYziFHLJg&edm=AHzjunoBAAAA&ccb=7-5&oh=00_Af3Hy2H9UhfmUeHlXym_Oib1FDQ-gbIfdYREICYFLMjmFQ&oe=69D5943B&_nc_sid=ba8368') center center/contain no-repeat;
+  position:relative;
 }
 .header::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.5);
 }
 .header h1 {
-  position: relative;
-  font-size: 60px;
-  font-weight: 900;
+  position:relative;
+  font-size:60px;
+  font-weight:900;
   color: #fff;
+  margin:0;
 }
 .header p {
-  position: relative;
+  position:relative;
   color: #fff;
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 22px;
+  margin-top:10px;
+  font-weight:bold;
+  font-size:22px;
 }
 
 /* SECTION TITLE */
@@ -270,7 +271,7 @@ let cart={};
 
 const coffee=[
 {name:"Espresso", price:35000, img:"https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG"},
-{name:"Americano", price:30000, img:"https://lh3.googleusercontent.com/p/AF1QipMNIdVxrmejBbUAPNpJhInWns6-J2CF5G0gm-yM=s203-h270-k-no"},
+{name:"Americano", price:30000, img:"https://lh3.googleusercontent.com/p/AF1QipMNIdVxrmejBbUAPNpJhInWns6-J2CF5G0gm-yM=s1024-v1"},
 {name:"Cappuccino", price:35000, img:"https://lh3.googleusercontent.com/p/AF1QipMKMworzi8s5GbMqYHpoA1Ok1PmYv_CuVIKj2h5=s1024-v1"},
 {name:"Latte", price:35000, img:"https://upload.wikimedia.org/wikipedia/commons/f/f8/Latte_art_coffee.jpg"},
 {name:"Mocha", price:40000, img:"https://upload.wikimedia.org/wikipedia/commons/4/45/Mocha_coffee.jpg"},
