@@ -13,6 +13,7 @@ body {
   font-family:'Montserrat',sans-serif;
   background:#000;
   color:white;
+  text-align:center;
 }
 
 /* HEADER */
@@ -24,14 +25,14 @@ body {
   justify-content:center;
   align-items:center;
   text-align:center;
-  background:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+  background:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
 }
 
 /* DARK OVERLAY */
 .overlay {
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.5);
   z-index:1;
 }
 
@@ -47,6 +48,7 @@ body {
 }
 .header-content p {
   font-size:22px;
+  opacity:0.9;
 }
 
 /* SECTION TITLE */
@@ -55,7 +57,7 @@ body {
   font-size:24px;
   margin:40px 0 20px;
   letter-spacing:2px;
-  color:#6C7A59; /* vert/gris */
+  color:grey;
 }
 
 /* GRID */
@@ -64,6 +66,7 @@ body {
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:25px;
   padding:0 25px 30px;
+  justify-items:center;
 }
 
 /* CARD */
@@ -73,17 +76,17 @@ body {
   overflow:hidden;
   transition:0.3s;
   box-shadow:0 5px 15px rgba(0,0,0,0.5);
-  position:relative;
+  width:220px;
 }
 .card:hover {
   transform:translateY(-8px);
-  box-shadow:0 10px 25px rgba(108,122,89,0.4); /* vert/gris */
+  box-shadow:0 10px 25px rgba(128,128,128,0.5);
 }
 
 /* IMAGE */
 .card img {
   width:100%;
-  aspect-ratio:357/238;
+  height:220px;
   object-fit:cover;
   transition:0.4s;
 }
@@ -100,7 +103,7 @@ body {
   margin:10px 0 5px;
 }
 .price {
-  color:#6C7A59; /* vert/gris */
+  color:grey;
   font-weight:bold;
   margin-bottom:10px;
 }
@@ -110,7 +113,7 @@ body {
   position:absolute;
   top:12px;
   left:12px;
-  background:#6C7A59;
+  background:grey;
   color:black;
   padding:6px 12px;
   border-radius:20px;
@@ -125,7 +128,7 @@ body {
   gap:10px;
 }
 .controls button {
-  background:#6C7A59;
+  background:grey;
   border:none;
   width:32px;
   height:32px;
@@ -147,7 +150,7 @@ body {
   top:20px;
   right:20px;
   background:#111;
-  border:2px solid #6C7A59;
+  border:2px solid grey;
   padding:12px 20px;
   border-radius:30px;
   display:flex;
@@ -174,7 +177,7 @@ body {
 }
 .cart-content h2 {
   text-align:center;
-  color:#6C7A59;
+  color:grey;
 }
 .cart-content button {
   margin-top:10px;
@@ -203,12 +206,13 @@ body {
   text-align:center;
   margin:40px 0;
 }
-.location iframe {
-  width:100%;
-  max-width:500px;
-  height:300px;
-  border:0;
-  border-radius:15px;
+.location button {
+  background:grey;
+  border:none;
+  padding:10px 25px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
 }
 </style>
 </head>
@@ -231,10 +235,9 @@ body {
 
 <div class="location">
   <h2>📍 Location</h2>
-  <iframe
-    src="https://www.google.com/maps?q=19.895000663346558,102.14216503795944&hl=fr&z=15&output=embed"
-    allowfullscreen="" loading="lazy">
-  </iframe>
+  <a href="https://www.google.com/maps?q=19.895000663346558,102.14216503795944" target="_blank">
+    <button>Open Map</button>
+  </a>
 </div>
 
 <div class="mini-cart" onclick="toggleCart()">
@@ -258,27 +261,27 @@ body {
 let cart={};
 
 const coffee=[
-{name:"Espresso", price:35000, img:"https://instagram.fvte1-2.fna.fbcdn.net/v/t1.15752-9/662275341_1523126332750576_8705074191709453853_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=108&ccb=7-5&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3RfZWZmb3J0X2ltYWdlOnRlc3QiXX0%3D&_nc_ohc=4pU3vM6Y-5UQ7kNvwHLKr_z&_nc_oc=Adrku3_hGSOQfut9MI1KMUy-HLLa8vc6VZcun5Ge_UmHr5-B82C70ltkdFufsoiIO6s&_nc_zt=23&_nc_ht=instagram.fvte1-2.fna&_nc_ss=7a3a8&oh=03_Q7cD5AF_EORu4DEkMy-7KKXsiSfRxKeTNPWTDjjmBpoWdPoK4Q&oe=69F78979"},
+{name:"Espresso", price:35000, img:"https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG"},
 {name:"Americano", price:30000, img:"https://lh3.googleusercontent.com/p/AF1QipMNIdVxrmejBbUAPNpJhInWns6-J2CF5G0gm-yM=s1024-v1"},
 {name:"Cappuccino", price:35000, img:"https://lh3.googleusercontent.com/p/AF1QipMKMworzi8s5GbMqYHpoA1Ok1PmYv_CuVIKj2h5=s1024-v1"},
 {name:"Latte", price:35000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN0E1O-YwNwqRIw53AsEAXKXtYryjiOCBaMg&s"},
 {name:"Mocha", price:40000, img:"https://st2.depositphotos.com/2894449/43042/i/450/depositphotos_430427264-stock-photo-iced-mocha-plastic-cup-table.jpg"},
-{name:"Vanilla Latte", price:40000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnQjWOJuXyUo7CHaAe7noMAhWAJpPlVcrP0A&s"},
-{name:"Caramel Latte", price:45000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnQjWOJuXyUo7CHaAe7noMAhWAJpPlVcrP0A&s"},
+{name:"Vanilla Latte", price:40000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Caramel Latte", price:45000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
 {name:"Orange Coffee", price:45000, best:true, img:"https://lh3.googleusercontent.com/p/AF1QipNzVKul2lBkuLGKG3hraz9j7hPP255Sb8P48bgG=s508-k-no"},
-{name:"Coconut Coffee", price:45000, best:true, img:"https://lh3.googleusercontent.com/p/AF1QipPUEszwlC50PdqTppFgmcc4BBN6dBe2-mBcrt1_=s846-k-no"},
+{name:"Coconut Coffee", price:45000, best:true, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
 ];
 
 const noncoffee=[
-{name:"Matcha Coconut", price:50000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPrmweo--40R3oQg9QxIQSVI58j55priCn8w&s"},
-{name:"Matcha Latte", price:45000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPrmweo--40R3oQg9QxIQSVI58j55priCn8w&s"},
-{name:"Strawberry Milk", price:35000, img:"https://img.freepik.com/premium-photo/iced-strawberry-milk-table-blurred-mountain-background_34155-7623.jpg"},
-{name:"Cocoa Strawberry", price:45000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnQjWOJuXyUo7CHaAe7noMAhWAJpPlVcrP0A&s"},
-{name:"Cocoa Latte", price:35000, img:"https://lh3.googleusercontent.com/p/AF1QipNyeNbhi8s8R3CZtBwPUfSh1VR66XEr1mZ6yT9m=s635-k-no"},
-{name:"Matcha Strawberry", price:50000, img:"https://tb-static.uber.com/prod/image-proc/processed_images/747d6ef89559d015f3a53d5b4710fdaa/58f691da9eaef86b0b51f9b2c483fe63.jpeg"},
-{name:"Green Tea", price:35000, img:"https://lh3.googleusercontent.com/gps-cs-s/AHVAwepjpL7wD-vx3SzHLpYPNiiKnZoQ_mLk_9EjWocmTBfO2czqMPL7nEXcXEeAQWOG9jmdOEKqrD12uZesFxXZqaQ3PN09-xBBbGfzGwZr0KzPJ_8YzD1oL0JmCTj_EjC2NYBBM3G5BMpTjxSr=w224-h298-k-no"},
-{name:"Thai Milk Tea", price:35000, img:"https://lh3.googleusercontent.com/p/AF1QipMYzqYeUawWCvB4kdqIUkrenTo5xy-nC9oYDAEd=s846-k-no"},
-{name:"Cocoa Coconut", price:45000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPrmweo--40R3oQg9QxIQSVI58j55priCn8w&s"},
+{name:"Matcha Coconut", price:50000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Matcha Latte", price:45000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Strawberry Milk", price:35000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Cocoa Strawberry", price:45000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Cocoa Latte", price:35000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Matcha Strawberry", price:50000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Green Tea", price:35000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Thai Milk Tea", price:35000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Cocoa Coconut", price:45000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
 ];
 
 function add(name, btn){
@@ -331,9 +334,9 @@ function send(){
   
   let clientName = '';
   while(true){
-    clientName = prompt("Veuillez entrer votre nom :","");
+    clientName = prompt("Please enter your name:", "");
     if(clientName && clientName.trim() !== "") break;
-    alert("Le nom est requis pour passer la commande !");
+    alert("Name is required to place the order!");
   }
 
   const orderId = 'ODR' + Math.floor(1000 + Math.random() * 9000);
