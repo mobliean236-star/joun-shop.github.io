@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Life Coffee</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin:0;
@@ -17,6 +19,7 @@ body {
 .header {
   position:relative;
   height:90vh;
+  overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -24,13 +27,15 @@ body {
   background:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
 }
 
+/* DARK OVERLAY */
 .overlay {
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,0.5);
+  background:rgba(0,0,0,0.6);
   z-index:1;
 }
 
+/* TEXT */
 .header-content {
   position:relative;
   z-index:2;
@@ -38,10 +43,10 @@ body {
 .header-content h1 {
   font-size:70px;
   font-weight:900;
+  letter-spacing:2px;
 }
 .header-content p {
   font-size:22px;
-  opacity:0.9;
 }
 
 /* SECTION TITLE */
@@ -50,7 +55,7 @@ body {
   font-size:24px;
   margin:40px 0 20px;
   letter-spacing:2px;
-  color:#8fbc8f; /* vert gris */
+  color:#6C7A59; /* vert/gris */
 }
 
 /* GRID */
@@ -72,7 +77,7 @@ body {
 }
 .card:hover {
   transform:translateY(-8px);
-  box-shadow:0 10px 25px rgba(143,188,143,0.4);
+  box-shadow:0 10px 25px rgba(108,122,89,0.4); /* vert/gris */
 }
 
 /* IMAGE */
@@ -95,17 +100,17 @@ body {
   margin:10px 0 5px;
 }
 .price {
-  color:#8fbc8f; /* vert gris */
+  color:#6C7A59; /* vert/gris */
   font-weight:bold;
   margin-bottom:10px;
 }
 
-/* BEST SELLER BADGE */
+/* BEST SELLER */
 .badge {
   position:absolute;
   top:12px;
   left:12px;
-  background:#8fbc8f;
+  background:#6C7A59;
   color:black;
   padding:6px 12px;
   border-radius:20px;
@@ -120,7 +125,7 @@ body {
   gap:10px;
 }
 .controls button {
-  background:#8fbc8f;
+  background:#6C7A59;
   border:none;
   width:32px;
   height:32px;
@@ -142,7 +147,7 @@ body {
   top:20px;
   right:20px;
   background:#111;
-  border:2px solid #8fbc8f;
+  border:2px solid #6C7A59;
   padding:12px 20px;
   border-radius:30px;
   display:flex;
@@ -169,13 +174,13 @@ body {
 }
 .cart-content h2 {
   text-align:center;
-  color:#8fbc8f;
+  color:#6C7A59;
 }
 .cart-content button {
   margin-top:10px;
   width:100%;
   padding:12px;
-  background:#32cd32;
+  background:#25D366;
   border:none;
   border-radius:20px;
   font-weight:bold;
@@ -184,13 +189,13 @@ body {
 
 /* FLOAT BUTTON */
 .float-order button {
-  background:#32cd32;
+  background:#25D366;
   padding:15px 35px;
   border:none;
   border-radius:50px;
   font-weight:bold;
   cursor:pointer;
-  box-shadow:0 0 20px #32cd32;
+  box-shadow:0 0 20px #25D366;
 }
 
 /* LOCATION */
@@ -198,22 +203,12 @@ body {
   text-align:center;
   margin:40px 0;
 }
-#map {
-  width:90%;
-  max-width:600px;
+.location iframe {
+  width:100%;
+  max-width:500px;
   height:300px;
-  margin:20px auto;
+  border:0;
   border-radius:15px;
-  border:2px solid #8fbc8f;
-}
-.location button {
-  background:#8fbc8f;
-  border:none;
-  padding:10px 25px;
-  border-radius:10px;
-  cursor:pointer;
-  color:black;
-  font-weight:bold;
 }
 </style>
 </head>
@@ -236,10 +231,10 @@ body {
 
 <div class="location">
   <h2>📍 Location</h2>
-  <div id="map"></div>
-  <a href="https://www.google.com/maps?q=19.895000663346558,102.14216503795944" target="_blank">
-    <button>Open Map / Itinéraire</button>
-  </a>
+  <iframe
+    src="https://www.google.com/maps?q=19.895000663346558,102.14216503795944&hl=fr&z=15&output=embed"
+    allowfullscreen="" loading="lazy">
+  </iframe>
 </div>
 
 <div class="mini-cart" onclick="toggleCart()">
@@ -268,22 +263,22 @@ const coffee=[
 {name:"Cappuccino", price:35000, img:"https://lh3.googleusercontent.com/p/AF1QipMKMworzi8s5GbMqYHpoA1Ok1PmYv_CuVIKj2h5=s1024-v1"},
 {name:"Latte", price:35000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN0E1O-YwNwqRIw53AsEAXKXtYryjiOCBaMg&s"},
 {name:"Mocha", price:40000, img:"https://st2.depositphotos.com/2894449/43042/i/450/depositphotos_430427264-stock-photo-iced-mocha-plastic-cup-table.jpg"},
-{name:"Vanilla Latte", price:40000, img:"https://img.freepik.com/free-photo/cold-beverage-plastic-cup-mockup_53876-74663.jpg?semt=ais_incoming&w=740&q=80"},
-{name:"Caramel Latte", price:45000, img:"https://img.freepik.com/free-photo/cold-beverage-plastic-cup-mockup_53876-74663.jpg?semt=ais_incoming&w=740&q=80"},
+{name:"Vanilla Latte", price:40000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Caramel Latte", price:45000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
 {name:"Orange Coffee", price:45000, best:true, img:"https://lh3.googleusercontent.com/p/AF1QipNzVKul2lBkuLGKG3hraz9j7hPP255Sb8P48bgG=s508-k-no"},
 {name:"Coconut Coffee", price:45000, best:true, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
 ];
 
 const noncoffee=[
-{name:"Matcha Coconut", price:50000, img:"https://www.shutterstock.com/image-photo/plastic-cup-that-half-filled-600nw-2637783491.jpg"},
+{name:"Matcha Coconut", price:50000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
 {name:"Matcha Latte", price:45000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
-{name:"Strawberry Milk", price:35000, img:"https://upload.wikimedia.org/wikipedia/commons/1/15/Strawberry_Milk.jpg"},
-{name:"Cocoa Strawberry", price:45000, img:"https://upload.wikimedia.org/wikipedia/commons/f/f8/Cocoa_Strawberry.jpg"},
-{name:"Cocoa Latte", price:35000, img:"https://upload.wikimedia.org/wikipedia/commons/5/5e/Cocoa_Latte.jpg"},
-{name:"Matcha Strawberry", price:50000, img:"https://upload.wikimedia.org/wikipedia/commons/3/30/Matcha_Strawberry.jpg"},
-{name:"Green Tea", price:35000, img:"https://upload.wikimedia.org/wikipedia/commons/2/2b/Green_Tea.jpg"},
-{name:"Thai Milk Tea", price:35000, img:"https://upload.wikimedia.org/wikipedia/commons/1/17/Thai_Milk_Tea.jpg"},
-{name:"Cocoa Coconut", price:45000, img:"https://upload.wikimedia.org/wikipedia/commons/4/45/Cocoa_Coconut.jpg"}
+{name:"Strawberry Milk", price:35000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Cocoa Strawberry", price:45000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Cocoa Latte", price:35000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Matcha Strawberry", price:50000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Green Tea", price:35000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Thai Milk Tea", price:35000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"},
+{name:"Cocoa Coconut", price:45000, img:"https://epe.brightspotcdn.com/d8/a4/212af2ed131184894538c9cd77ea/not-yet-1426593-640.png"}
 ];
 
 function add(name, btn){
@@ -382,20 +377,6 @@ function render(){
 }
 
 render();
-
-/* MAP */
-function initMap(){
-  const mapDiv = document.getElementById("map");
-  const iframe = document.createElement("iframe");
-  iframe.width="100%";
-  iframe.height="100%";
-  iframe.style.border="0";
-  iframe.loading="lazy";
-  iframe.referrerPolicy="no-referrer-when-downgrade";
-  iframe.src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=19.895000663346558,102.14216503795944";
-  mapDiv.appendChild(iframe);
-}
-initMap();
 </script>
 
 </body>
